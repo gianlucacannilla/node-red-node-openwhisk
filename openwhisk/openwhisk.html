@@ -142,12 +142,13 @@ action; any other type is ignored.</p>
         defaults: {
             name: { value: "" },
             api: { value: "https://openwhisk.ng.bluemix.net/api/v1"},
+            certs: {value: ""},
         },
         credentials: {
             key: {type:"password"}
         },
         label: function() {
-            return this.name || this.namespace ||  "OpenWhisk Service";
+            return this.name || this.namespace ||"OpenWhisk Service";
         }
     });
 
@@ -398,7 +399,6 @@ action; any other type is ignored.</p>
             name: { value: "" },
             func: {value:""},
             namespace: { value: "" },
-            certs: {value: ""},
             action: { value: "" },
             params: { value: [{key: "", value: "", disabled: true}] },
             service: { type:"openwhisk-service", required: true },
@@ -427,8 +427,6 @@ action; any other type is ignored.</p>
           this.params.forEach(function (param) {
               if (param.key) {
                   $("#node-input-parameters-container").editableList('addItem', param);
-                  console.log("Foreach params");
-                  console.log(param.key);
               }
           });
           // if node configuration includes custom action source,
