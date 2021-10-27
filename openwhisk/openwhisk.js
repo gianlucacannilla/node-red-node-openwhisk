@@ -29,7 +29,7 @@ module.exports = function(RED) {
       if (req.query.id) {
         client = RED.nodes.getNode(req.query.id).client;
       } else {
-        client = openwhisk({api: req.query.api, api_key: req.query.key,ignore_certs:true});
+        client = openwhisk({api: req.query.api, api_key: req.query.key,ignore_certs:req.query.certs});
       }
 
       client.actions.get({actionName: req.query.action, namespace: req.query.namespace})

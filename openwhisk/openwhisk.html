@@ -427,6 +427,8 @@ action; any other type is ignored.</p>
           this.params.forEach(function (param) {
               if (param.key) {
                   $("#node-input-parameters-container").editableList('addItem', param);
+                  console.log("Foreach params");
+                  console.log(param.key);
               }
           });
           // if node configuration includes custom action source,
