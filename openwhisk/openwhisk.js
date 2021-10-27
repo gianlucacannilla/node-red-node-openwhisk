@@ -79,7 +79,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,n);
         this.name = n.name;
         this.api = n.api;
-        this.certs = true;
+        this.certs = n.certs;
         if (/\/$/.test(this.api)) {
             this.api = this.api.substring(this.api.length-1);
         }
