@@ -29,7 +29,7 @@ module.exports = function(RED) {
       if (req.query.id) {
         client = RED.nodes.getNode(req.query.id).client;
       } else {
-        client = openwhisk({api: req.query.api, api_key: req.query.key});
+        client = openwhisk({api: req.query.api, api_key: req.query.key,ignore_certs:true});
       }
 
       client.actions.get({actionName: req.query.action, namespace: req.query.namespace})
@@ -79,6 +79,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,n);
         this.name = n.name;
         this.api = n.api;
+        this.certs = true;
         if (/\/$/.test(this.api)) {
             this.api = this.api.substring(this.api.length-1);
         }
@@ -92,7 +93,7 @@ module.exports = function(RED) {
             }
         }
 
-        this.client = openwhisk({api: this.api, api_key: this.credentials.key});
+        this.client = openwhisk({api: this.api, api_key: this.credentials.key,ignore_certs:this.certs});
     }
 
     RED.nodes.registerType("openwhisk-service",OpenWhiskService,{
