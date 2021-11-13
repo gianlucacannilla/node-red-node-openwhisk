@@ -84,10 +84,11 @@ module.exports = function(RED) {
             this.api = this.api.substring(this.api.length-1);
         }
         this.valid = /^https?:\/\/.*/.test(this.api) && this.credentials.key;
-        if (!this.valid) {
+        //todo fix
+        /*if (!this.valid) {
             if (!this.credentials.key) {
                 this.error("Missing api key");
-            }
+            }*/
             if (!/^https?:\/\/.*/.test(this.api)) {
                 this.error("Missing api url");
             }
